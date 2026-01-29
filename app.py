@@ -6,7 +6,6 @@ import math
 
 st.set_page_config(page_title="Distribusi Probabilitas", layout="centered")
 st.title("📘 Distribusi Probabilitas")
-st.caption("Penjabaran rumus ala buku statistik (versi dosen)")
 
 menu = st.selectbox(
     "Pilih Distribusi",
@@ -195,3 +194,4 @@ elif menu == "Normal":
     ax.set_title("Distribusi Normal")
     ax.grid(True)
     st.pyplot(fig)
+
