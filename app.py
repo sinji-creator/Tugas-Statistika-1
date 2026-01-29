@@ -5,8 +5,8 @@ from scipy.stats import binom, poisson, hypergeom, norm
 import math
 
 st.set_page_config(page_title="Distribusi Probabilitas", layout="centered")
-st.title("📘 Distribusi Probabilitas + Penjabaran Rumus")
-st.write("Binomial, Poisson, Hipergeometrik, dan Normal (versi buku statistik)")
+st.title("📘 Distribusi Probabilitas")
+st.write("Binomial, Poisson, Hipergeometrik, dan Normal")
 
 menu = st.selectbox(
     "Pilih Distribusi",
