@@ -54,6 +54,7 @@ if menu == "Binomial":
     X = np.arange(0, n + 1)
     Y = binom.pmf(X, n, p)
 
+    st.subheader("📊 Grafik Distribusi Binomial")
     fig, ax = plt.subplots()
     ax.bar(X, Y)
     ax.set_title("Distribusi Binomial")
@@ -96,6 +97,7 @@ elif menu == "Poisson":
     X = np.arange(0, int(lam*5)+1)
     Y = poisson.pmf(X, lam)
 
+    st.subheader("📊 Grafik Distribusi Poisson")
     fig, ax = plt.subplots()
     ax.bar(X, Y)
     ax.set_title("Distribusi Poisson")
@@ -140,6 +142,7 @@ elif menu == "Hipergeometrik":
     X = np.arange(0, n + 1)
     Y = hypergeom.pmf(X, N, K, n)
 
+    st.subheader("📊 Grafik Distribusi Hipergeometrik")
     fig, ax = plt.subplots()
     ax.bar(X, Y)
     ax.set_title("Distribusi Hipergeometrik")
@@ -188,6 +191,7 @@ elif menu == "Normal":
     X = np.linspace(mu - 4*sigma, mu + 4*sigma, 1000)
     Y = norm.pdf(X, mu, sigma)
 
+    st.subheader("📊 Grafik Distribusi Normal")
     fig, ax = plt.subplots()
     ax.plot(X, Y)
     ax.axvline(x, linestyle="--")
@@ -195,4 +199,5 @@ elif menu == "Normal":
     ax.set_title("Distribusi Normal")
     ax.grid(True)
     st.pyplot(fig)
+
 
