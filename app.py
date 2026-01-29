@@ -13,6 +13,13 @@ menu = st.selectbox(
     ["Binomial", "Poisson", "Hipergeometrik", "Normal"]
 )
 
+# ================== FUNGSI RENDER RUMUS (ANTI KEPOTONG) ==================
+def render_math(tex, size=18):
+    fig, ax = plt.subplots(figsize=(6, 1))
+    ax.text(0.5, 0.5, tex, fontsize=size, ha='center', va='center')
+    ax.axis('off')
+    st.pyplot(fig)
+
 # =========================================================
 # BINOMIAL
 # =========================================================
@@ -26,34 +33,15 @@ if menu == "Binomial":
     prob = binom.pmf(x, n, p)
 
     st.subheader("📐 Rumus")
-    st.markdown(r"""
-    $$
-    P(X=x)=\binom{n}{x}p^x(1-p)^{n-x}
-    $$
-    """)
+    render_math(r"$P(X=x)=\binom{n}{x}p^x(1-p)^{n-x}$")
 
     st.subheader("✏️ Penjabaran")
-    st.markdown(fr"""
-    $$
-    P(X={x}) = \binom{{{n}}}{{{x}}} ({p})^{x} (1-{p})^{{{n-x}}}
-    $$
-
-    $$
-    \binom{{{n}}}{{{x}}} = \frac{{{n}!}}{{{x}!({n-x})!}} = {math.comb(n,x)}
-    $$
-
-    $$
-    P(X={x}) = {math.comb(n,x)} \times {p**x:.5f} \times {(1-p)**(n-x):.5f}
-    $$
-
-    $$
-    P(X={x}) = {prob:.6f}
-    $$
-    """)
+    render_math(fr"$P(X={x})=\binom{{{n}}}{{{x}}}({p})^{x}(1-{p})^{{{n-x}}}$")
+    render_math(fr"$\binom{{{n}}}{{{x}}}=\frac{{{n}!}}{{{x}!({n-x})!}}={math.comb(n,x)}$")
+    render_math(fr"$P(X={x})={prob:.6f}$")
 
     X = np.arange(0, n + 1)
     Y = binom.pmf(X, n, p)
-
     fig, ax = plt.subplots()
     ax.bar(X, Y)
     ax.set_title("Distribusi Binomial")
@@ -72,30 +60,15 @@ elif menu == "Poisson":
     prob = poisson.pmf(x, lam)
 
     st.subheader("📐 Rumus")
-    st.markdown(r"""
-    $$
-    P(X=x)=\frac{e^{-\lambda}\lambda^x}{x!}
-    $$
-    """)
+    render_math(r"$P(X=x)=\frac{e^{-\lambda}\lambda^x}{x!}$")
 
     st.subheader("✏️ Penjabaran")
-    st.markdown(fr"""
-    $$
-    P(X={x})=\frac{{e^{{-{lam}}}\times {lam}^{x}}}{{{x}!}}
-    $$
-
-    $$
-    = \frac{{{math.exp(-lam):.6f} \times {lam**x}}}{{{math.factorial(x)}}}
-    $$
-
-    $$
-    P(X={x}) = {prob:.6f}
-    $$
-    """)
+    render_math(fr"$P(X={x})=\frac{{e^{{-{lam}}}\lambda^{x}}}{{{x}!}}$")
+    render_math(fr"$=\frac{{{math.exp(-lam):.6f}\times{lam**x}}}{{{math.factorial(x)}}}$")
+    render_math(fr"$P(X={x})={prob:.6f}$")
 
     X = np.arange(0, int(lam*5)+1)
     Y = poisson.pmf(X, lam)
-
     fig, ax = plt.subplots()
     ax.bar(X, Y)
     ax.set_title("Distribusi Poisson")
@@ -116,30 +89,14 @@ elif menu == "Hipergeometrik":
     prob = hypergeom.pmf(x, N, K, n)
 
     st.subheader("📐 Rumus")
-    st.markdown(r"""
-    $$
-    P(X=x)=\frac{\binom{K}{x}\binom{N-K}{n-x}}{\binom{N}{n}}
-    $$
-    """)
+    render_math(r"$P(X=x)=\frac{\binom{K}{x}\binom{N-K}{n-x}}{\binom{N}{n}}$")
 
     st.subheader("✏️ Penjabaran")
-    st.markdown(fr"""
-    $$
-    P(X={x})=\frac{{\binom{{{K}}}{{{x}}}\binom{{{N-K}}}{{{n-x}}}}}{{\binom{{{N}}}{{{n}}}}}
-    $$
-
-    $$
-    = \frac{{{math.comb(K,x)}\times {math.comb(N-K,n-x)}}}{{{math.comb(N,n)}}}
-    $$
-
-    $$
-    P(X={x}) = {prob:.6f}
-    $$
-    """)
+    render_math(fr"$=\frac{{{math.comb(K,x)}\times{math.comb(N-K,n-x)}}}{{{math.comb(N,n)}}}$")
+    render_math(fr"$P(X={x})={prob:.6f}$")
 
     X = np.arange(0, n + 1)
     Y = hypergeom.pmf(X, N, K, n)
-
     fig, ax = plt.subplots()
     ax.bar(X, Y)
     ax.set_title("Distribusi Hipergeometrik")
@@ -160,34 +117,16 @@ elif menu == "Normal":
     prob = norm.cdf(z)
 
     st.subheader("📐 Rumus")
-    st.markdown(r"""
-    $$
-    Z = \frac{X - \mu}{\sigma}
-    $$
-    """)
+    render_math(r"$Z=\frac{X-\mu}{\sigma}$")
 
-    st.subheader("✏️ Penjabaran (WAJIB DI UJIAN)")
-    st.markdown(fr"""
-    $$
-    Z = \frac{{{x} - {mu}}}{{{sigma}}}
-    $$
+    st.subheader("✏️ Penjabaran")
+    render_math(fr"$Z=\frac{{{x}-{mu}}}{{{sigma}}}$")
+    render_math(fr"$Z={z:.2f}$")
+    render_math(fr"$P(X\le{x})=P(Z\le{z:.2f})$")
+    render_math(fr"$P(X\le{x})={prob:.6f}$")
 
-    $$
-    Z = {z:.2f}
-    $$
-
-    $$
-    P(X \le {x}) = P(Z \le {z:.2f})
-    $$
-
-    $$
-    P(X \le {x}) = {prob:.6f}
-    $$
-    """)
-
-    X = np.linspace(mu - 4*sigma, mu + 4*sigma, 1000)
+    X = np.linspace(mu-4*sigma, mu+4*sigma, 1000)
     Y = norm.pdf(X, mu, sigma)
-
     fig, ax = plt.subplots()
     ax.plot(X, Y)
     ax.axvline(x, linestyle="--")
@@ -195,5 +134,3 @@ elif menu == "Normal":
     ax.set_title("Distribusi Normal")
     ax.grid(True)
     st.pyplot(fig)
-
-
