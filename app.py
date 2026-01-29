@@ -6,6 +6,7 @@ import math
 
 st.set_page_config(page_title="Distribusi Probabilitas", layout="centered")
 st.title("📘 Distribusi Probabilitas")
+st.write("Binomial, Poisson, Hipergeometrik, dan Normal")
 
 menu = st.selectbox(
     "Pilih Distribusi",
@@ -194,4 +195,5 @@ elif menu == "Normal":
     ax.set_title("Distribusi Normal")
     ax.grid(True)
     st.pyplot(fig)
+
 
