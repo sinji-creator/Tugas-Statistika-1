@@ -166,7 +166,7 @@ elif menu == "Normal":
     $$
     """)
 
-    st.subheader("✏️ Penjabaran (WAJIB DI UJIAN)")
+    st.subheader("✏️ Penjabaran")
     st.markdown(fr"""
     $$
     Z = \frac{{{x} - {mu}}}{{{sigma}}}
@@ -195,3 +195,4 @@ elif menu == "Normal":
     ax.set_title("Distribusi Normal")
     ax.grid(True)
     st.pyplot(fig)
+
